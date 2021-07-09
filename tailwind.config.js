@@ -1,17 +1,12 @@
 module.exports = {
-  mode: 'jit',
+  mode: "jit",
   purge: ["./src/**/*.{ts,tsx}"],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: false,
   theme: {
-    colors: {
-      blue: colors.sky,
-      gray:colors.gray,
-      pink: colors.pink,
-    },
     extend: {},
   },
   variants: {
     extend: {},
   },
   plugins: [],
-}
+};
