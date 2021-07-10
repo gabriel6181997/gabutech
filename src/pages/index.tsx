@@ -1,7 +1,13 @@
+import { Header } from "src/components/separate/Header";
+
 const Home = () => {
   return (
-    <div>Index Page</div>
-  )
-}
+    <>
+      <Header />
+      <main></main>
+      <footer></footer>
+    </>
+  );
+};
 
 export default Home;
