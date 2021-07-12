@@ -4,6 +4,7 @@ import { Footer } from "src/components/separate/Footer";
 import { Header } from "src/components/separate/Header";
 import { Button } from "src/components/shared/Button";
 import { Card } from "src/components/shared/Card";
+import { Title } from "src/components/shared/Title";
 import { ICONS } from "src/utils/iconutil";
 
 const Home = () => {
@@ -29,6 +30,7 @@ const Home = () => {
             <h2 className="relative after:absolute after:bottom-3 after:left-0 pb-4 after:w-28 after:h-1 text-4xl font-bold after:bg-blue-900">
               About
             </h2>
+
             <p className="py-4">
               越境駆け出しエンジニアのガブリエルです。
               <br />
@@ -69,9 +71,9 @@ const Home = () => {
 
         <section className="py-12 bg-blue-200">
           <div className="xl:container">
-            <h2 className="relative after:absolute after:bottom-2 after:left-[46%] pb-4 after:w-28 after:h-1 text-4xl font-bold text-center after:bg-blue-900">
+            <Title variant="underlined" className="text-4xl">
               Blog
-            </h2>
+            </Title>
             <ul className="flex gap-6 justify-center pt-8">
               <Card />
               <Card />
@@ -86,9 +88,10 @@ const Home = () => {
 
         <section className="py-12">
           <div className="xl:container">
-            <h2 className="relative after:absolute after:bottom-2 after:left-[46%] pb-4 after:w-28 after:h-1 text-4xl font-bold text-center after:bg-blue-900">
+            <Title variant="underlined" className="text-4xl">
               Works
-            </h2>
+            </Title>
+
             <ul className="flex gap-6 justify-center pt-8">
               <Card />
               <Card />
@@ -102,9 +105,10 @@ const Home = () => {
 
         <section className="py-12 bg-blue-200">
           <div className="xl:container text-center">
-            <h2 className="relative after:absolute after:bottom-2 after:left-[46%] pb-4 after:w-28 after:h-1 text-4xl font-bold text-center after:bg-blue-900">
+            <Title variant="underlined" className="text-4xl">
               Contact
-            </h2>
+            </Title>
+
             <div className="pt-6">
               <p className="font-bold">問い合わせは、メールもしくは電話にてご連絡ください。</p>
               <dl className="flex justify-center pt-5">
