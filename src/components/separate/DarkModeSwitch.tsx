@@ -1,23 +1,16 @@
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useCallback } from "react";
 
 export const DarkModeSwitch = () => {
-  const [isMounted, setIsMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  const handleChange = () => {
-    if (isMounted) {
-      setTheme(theme === "light" ? "dark" : "light");
-    }
-  };
+  const handleChangeTheme = useCallback(() => {
+    theme === "light" ? setTheme("dark") : setTheme("light");
+  }, [theme, setTheme]);
 
   return (
-    <button onClick={handleChange}>
-      {theme === "light" ? (
+    <button onClick={handleChangeTheme}>
+      {theme === "light" && (
         <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10" viewBox="0 0 20 20" fill="currentColor">
           <path
             fillRule="evenodd"
@@ -25,7 +18,8 @@ export const DarkModeSwitch = () => {
             clipRule="evenodd"
           />
         </svg>
-      ) : (
+      )}
+      {theme === "dark" && (
         <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10" viewBox="0 0 20 20" fill="currentColor">
           <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
         </svg>
