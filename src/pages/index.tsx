@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Footer } from "src/components/separate/Footer";
 import { Header } from "src/components/separate/Header";
-import { Button } from "src/components/shared/Button";
 import { Card } from "src/components/shared/Card";
+import { MoreButton } from "src/components/shared/MoreButton";
 import { Title } from "src/components/shared/Title";
 import { ICONS } from "src/utils/iconutil";
 
@@ -81,7 +81,7 @@ const Home = () => {
             </ul>
 
             <div className="pt-8 text-center">
-              <Button />
+              <MoreButton href="/blog" />
             </div>
           </div>
         </section>
@@ -89,7 +89,7 @@ const Home = () => {
         <section className="py-12">
           <div className="xl:container">
             <Title variant="underlined" className="text-4xl">
-              Works
+              Work
             </Title>
 
             <ul className="flex gap-6 justify-center pt-8">
@@ -98,7 +98,7 @@ const Home = () => {
               <Card />
             </ul>
             <div className="pt-8 text-center">
-              <Button />
+              <MoreButton href="/work" />
             </div>
           </div>
         </section>
