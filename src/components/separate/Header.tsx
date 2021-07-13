@@ -12,8 +12,8 @@ const NAVITEMS = [
     title: "Blog",
   },
   {
-    link: "/works",
-    title: "Works",
+    link: "/work",
+    title: "Work",
   },
 ];
 
