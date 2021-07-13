@@ -14,7 +14,7 @@ export const Title: VFC<Props> = (props) => {
     "font-bold",
     {
       "p-3 bg-blue-200 border-l-4 border-blue-900": props.variant === "box",
-      "relative after:absolute after:bottom-2 after:left-[46%] pb-4 after:w-28 after:h-1 text-center after:bg-blue-900":
+      "mx-auto border-b-4 border-blue-900":
         props.variant === "underlined",
     },
   ]);

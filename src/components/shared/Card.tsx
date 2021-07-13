@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const Card = () => {
   return (
-    <li className="max-w-[250px] bg-white rounded-[10px] shadow-md">
+    <li className="mx-auto md:mx-0 max-w-[250px] bg-white rounded-[10px] shadow-md">
       <Link href="/">
         <a>
           <Image src="/img/blogcardtemporaryimage.png" alt="blog-card-img" width={250} height={250} />
