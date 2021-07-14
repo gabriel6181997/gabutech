@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps = async () => {
 const Blog: NextPage<Props> = () => {
   return (
     <Layout>
-      <Title bigTitle variant="box" className="text-4xl">
+      <Title bigTitle variant="box" className="text-3xl md:text-4xl">
         Blog
       </Title>
       <ul className="flex flex-wrap gap-10 justify-center mt-10">

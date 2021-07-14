@@ -8,7 +8,7 @@ import { Title } from "src/components/shared/Title";
 const Blog: NextPage = () => {
   return (
     <Layout>
-      <Title bigTitle variant="box" className="text-4xl">
+      <Title bigTitle variant="box" className="text-3xl md:text-4xl">
         Work
       </Title>
       <ul className="flex flex-wrap gap-10 justify-center mt-10">

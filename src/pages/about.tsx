@@ -7,7 +7,7 @@ const About = () => {
   return (
     <>
       <Layout>
-        <Title bigTitle variant="box" className="mb-6 text-4xl">
+        <Title bigTitle variant="box" className="mb-6 text-3xl md:text-4xl">
           About
         </Title>
 
@@ -27,7 +27,7 @@ const About = () => {
           {HISTORIES.map((history) => {
             return (
               <li className="flex items-center" key={history.title}>
-                <p className="mr-8 w-[60px] h-[60px] text-sm font-bold leading-[60px] text-center bg-blue-200 rounded-full">
+                <p className="box-border block p-2 mr-4 md:mr-8 text-sm font-bold text-center bg-blue-200 rounded-xl">
                   {history.year}
                   {history.year === "現在" ? null : "."}
                   {history.month}
@@ -45,7 +45,7 @@ const About = () => {
           スキル
         </Title>
 
-        <div className="mt-8 space-y-6">
+        <div className="my-7 space-y-6">
           <div>
             <h3 className="font-bold text-blue-900 underline">フロントエンド</h3>
             <p>
@@ -56,7 +56,7 @@ const About = () => {
 
           <div>
             <h3 className="font-bold text-blue-900 underline">バックエンド</h3>
-            <p>BFFがわかるフロントエンドエンジニアになれるように、Node .js (Express)とMySQLを勉強するつもり</p>
+            <p>BFFがわかるフロントエンドエンジニアになれるように、Node.js (Express)とMySQLを勉強するつもり</p>
           </div>
 
           <div>
@@ -74,6 +74,7 @@ const About = () => {
             <p>WordPress, microCMS</p>
           </div>
         </div>
+
         <Title variant="box" className="text-2xl">
           最後に
         </Title>
