@@ -1,21 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { DarkModeSwitch } from "src/components/separate/DarkModeSwitch";
-
-const NAVITEMS = [
-  {
-    link: "/about",
-    title: "About",
-  },
-  {
-    link: "/blog",
-    title: "Blog",
-  },
-  {
-    link: "/work",
-    title: "Work",
-  },
-];
+import { NAVITEMS } from "src/utils/navitemutil";
 
 export const Header = () => {
   return (
