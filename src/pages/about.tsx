@@ -74,6 +74,22 @@ const About = () => {
             <p>WordPress, microCMS</p>
           </div>
         </div>
+        <Title variant="box" className="text-2xl">
+          最後に
+        </Title>
+        <p className="mt-7">
+          いかがだったでしょうか？私に少しでも興味を持っていてくれれば幸いです。
+          <br />
+          ガブリエルのことをもっと知りたい、もしくはガブリエルと仕事してみたいと思う方は、お気軽にメールまたは電話にてご連絡ください。
+        </p>
+        <dl className="flex pt-5">
+          <dt>電話番号：</dt>
+          <dl>(+852) 6891 0740</dl>
+        </dl>
+        <dl className="flex pt-2">
+          <dt>メールアドレス：</dt>
+          <dl>gabriel6181997@gmail.com</dl>
+        </dl>
       </Layout>
     </>
   );
