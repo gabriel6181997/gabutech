@@ -130,6 +130,9 @@ const Home = () => {
       </main>
 
       <Footer />
+      <div className="block md:hidden">
+        <ButtonNavigation />
+      </div>
     </>
   );
 };
