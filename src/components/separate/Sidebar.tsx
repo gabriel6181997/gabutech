@@ -5,7 +5,7 @@ import { Searchbox } from "src/components/separate/Searchbar";
 
 export const Sidebar = () => {
   return (
-    <aside className="block px-9 w-1/3">
+    <aside className="block">
       <Searchbox />
 
       <div className="mt-10">

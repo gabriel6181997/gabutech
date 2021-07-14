@@ -17,13 +17,13 @@ const NAVITEMS = [
 
 export const Footer = () => {
   return (
-    <footer className="py-4 bg-blue-200">
-      <ul className="xl:container flex justify-center gap-6">
+    <footer className="pt-6 pb-12 md:pb-8 bg-blue-200">
+      <ul className="xl:container flex gap-6 justify-center">
         {NAVITEMS.map((navitem) => {
           return (
             <li key={navitem.title}>
               <Link href={navitem.href}>
-                <a className="hover:font-bold hover:text-blue-900 hover:underline duration-300 ">
+                <a className="hover:font-bold hover:text-blue-900 hover:border-b-2 hover:border-blue-900 transition-all duration-300">
                   {navitem.title}
                 </a>
               </Link>
