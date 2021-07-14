@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ButtonNavigation } from "src/components/separate/ButtonNavigation";
 import { Footer } from "src/components/separate/Footer";
 import { Header } from "src/components/separate/Header";
 import { Card } from "src/components/shared/Card";
@@ -108,25 +109,6 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="py-12 bg-blue-200">
-          <div className="container text-center">
-            <Title variant="underlined" className="max-w-[110px] md:max-w-[140px] text-3xl md:text-4xl text-center">
-              Contact
-            </Title>
-
-            <div className="pt-8">
-              <p className="font-bold">問い合わせは、メールもしくは電話にてご連絡ください。</p>
-              <dl className="flex justify-center pt-5">
-                <dt>電話番号：</dt>
-                <dl>(+852) 6891 0740</dl>
-              </dl>
-              <dl className="flex justify-center pt-2">
-                <dt>メールアドレス：</dt>
-                <dl>gabriel6181997@gmail.com</dl>
-              </dl>
-            </div>
-          </div>
-        </section>
       </main>
 
       <Footer />
