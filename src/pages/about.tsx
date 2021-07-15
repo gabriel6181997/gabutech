@@ -1,9 +1,21 @@
+import type { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
 import { Layout } from "src/components/separate/Layout";
 import { Title } from "src/components/shared/Title";
-import { HISTORIES } from "src/utils/historyutil";
+import { client } from "src/libs/client";
+import type { AboutType } from "src/types/types";
 
-const About = () => {
+export const getStaticProps: GetStaticProps = async () => {
+  const data: AboutType = await client.get({ endpoint: "about" });
+
+  return {
+    props: {
+      about: data,
+    },
+  };
+};
+
+const About: NextPage<AboutType> = (props) => {
   return (
     <>
       <Layout>
@@ -13,18 +25,20 @@ const About = () => {
 
         <Image src="/img/blogillustration.png" alt="blog-picture" width={900} height={450} />
 
-        <p className="my-6">
-          越境駆け出しエンジニアのガブリエルです。
-          <br />
-          私の経歴やスキルなどをあまり知らない方が多いので、それらについて少しお話しようと思います。
-        </p>
+        <article
+          className="my-6"
+          dangerouslySetInnerHTML={{
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            __html: `${props.about.about.shortdescription}`,
+          }}
+        />
 
         <Title variant="box" className="text-2xl">
           経歴
         </Title>
 
         <ul className="my-7 space-y-6">
-          {HISTORIES.map((history) => {
+          {props.about.about.history.map((history) => {
             return (
               <li className="flex items-center" key={history.title}>
                 <p className="box-border block p-2 mr-4 md:mr-8 text-sm font-bold text-center bg-blue-200 rounded-xl">
@@ -44,53 +58,25 @@ const About = () => {
         <Title variant="box" className="text-2xl">
           スキル
         </Title>
-
-        <div className="my-7 space-y-6">
-          <div>
-            <h3 className="font-bold text-blue-900 underline">フロントエンド</h3>
-            <p>
-              HTML, CSS, JavaScript, jQuery, React, Next.js, TypeScript <br />
-              状態管理：Recoil
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-blue-900 underline">バックエンド</h3>
-            <p>BFFがわかるフロントエンドエンジニアになれるように、Node.js (Express)とMySQLを勉強するつもり</p>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-blue-900 underline">ホスティング</h3>
-            <p>Vercel, Firebase</p>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-blue-900 underline">baaS</h3>
-            <p>Firebase (Firebase Authentication, Realtime Database, Firestore, Storage, Hosting)</p>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-blue-900 underline">CMS</h3>
-            <p>WordPress, microCMS</p>
-          </div>
-        </div>
+        <article
+          className="my-7"
+          dangerouslySetInnerHTML={{
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            __html: `${props.about.about.skill}`,
+          }}
+        />
 
         <Title variant="box" className="text-2xl">
           最後に
         </Title>
-        <p className="mt-7">
-          いかがだったでしょうか？私に少しでも興味を持っていてくれれば幸いです。
-          <br />
-          ガブリエルのことをもっと知りたい、もしくはガブリエルと仕事してみたいと思う方は、お気軽にメールまたは電話にてご連絡ください。
-        </p>
-        <dl className="flex pt-5">
-          <dt>電話番号：</dt>
-          <dl>(+852) 6891 0740</dl>
-        </dl>
-        <dl className="flex pt-2">
-          <dt>メールアドレス：</dt>
-          <dl>gabriel6181997@gmail.com</dl>
-        </dl>
+
+        <article
+          className="mt-7"
+          dangerouslySetInnerHTML={{
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            __html: `${props.about.about.conclusion}`,
+          }}
+        />
       </Layout>
     </>
   );

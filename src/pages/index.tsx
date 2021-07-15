@@ -1,3 +1,4 @@
+import type { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ButtonNavigation } from "src/components/separate/ButtonNavigation";
@@ -6,42 +7,52 @@ import { Header } from "src/components/separate/Header";
 import { Card2 } from "src/components/shared/Card2";
 import { MoreButton } from "src/components/shared/MoreButton";
 import { Title } from "src/components/shared/Title";
+import { client } from "src/libs/client";
+import type { Top } from "src/types/types";
 import { ICONS } from "src/utils/iconutil";
 
-const Home = () => {
+export const getStaticProps: GetStaticProps = async () => {
+  const data: Top = await client.get({ endpoint: "top" });
+
+  return {
+    props: {
+      top: data,
+    },
+  };
+};
+
+const Home: NextPage<Top> = (props) => {
   return (
     <>
       <Header />
       <main className="mx-auto mt-10 md:mt-20">
         <div className="container block md:flex md:flex-row-reverse md:justify-center lg:justify-around items-center mx-auto">
-          <Image src="/img/fistviewtemporarylogo.png" alt="firstview" width={550} height={550} />
+          <Image src={props.top.top.firstviewimage.url} alt="firstview" width={550} height={550} />
           <div className="mt-5 md:mt-0 md:mr-5 lg:mr-0">
             <p className="pb-2 text-3xl sm:text-4xl lg:text-5xl font-bold">ガブリエル</p>
-            <p className="mb-6 md:mb-16 text-sm md:text-base">越境駆け出しエンジニア</p>
-            <p>
-              国境を超えて〜 <br />
-              Webエンジニア就職で日本へ
-            </p>
+            <p className="mb-6 md:mb-16 text-sm md:text-base">{props.top.top.title}</p>
+
+            <article
+              dangerouslySetInnerHTML={{
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                __html: `${props.top.top.catchcopy}`,
+              }}
+            />
           </div>
         </div>
 
         <section className="container md:flex md:flex-row-reverse justify-center items-center my-16">
           <div className="p-6 md:p-12 md:ml-24 w-full md:max-w-[500px] bg-blue-200">
-            <h2
-              className="mx-auto md:ml-0 max-w-[85px] md:max-w-[100px] text-3xl md:text-4xl font-bold border-b-4 border-blue-900"
-            >
+            <h2 className="mx-auto md:ml-0 max-w-[85px] md:max-w-[100px] text-3xl md:text-4xl font-bold border-b-4 border-blue-900">
               About
             </h2>
-
-            <p className="py-6 text-sm md:text-base leading-normal">
-              越境駆け出しエンジニアのガブリエルです。
-              <br />
-              YouTubeがきっかけでプログラミングに出会い、そこからプログラミングに夢中。
-              <br />
-              日本でWebエンジニアとして就職できるように、現在Web系のプログラミングを学習しており、得意分野はTypeScriptやNext.jsを用いたモダンフロントエンドの開発。
-              <br />
-              好きなものはプログラミング、Superfly、猫。
-            </p>
+            <article
+              className="py-6 text-sm md:text-base leading-normal"
+              dangerouslySetInnerHTML={{
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                __html: `${props.top.top.aboutdescription}`,
+              }}
+            />
             <div className="flex gap-4">
               {ICONS.map((icon) => {
                 return (
@@ -71,7 +82,7 @@ const Home = () => {
           </div>
 
           <div className="mt-8 md:mt-0 text-center md:text-left">
-            <Image src="/img/selflogo.png" alt="self" width={200} height={300} />
+            <Image src={props.top.top.selfportrait.url} alt="self" width={200} height={300} />
           </div>
         </section>
 
@@ -81,9 +92,9 @@ const Home = () => {
               Blog
             </Title>
             <ul className="flex flex-col md:flex-row gap-6 md:justify-center pt-8">
-              <Card />
-              <Card />
-              <Card />
+              <Card2 />
+              <Card2 />
+              <Card2 />
             </ul>
 
             <div className="pt-8 text-center">
@@ -108,7 +119,6 @@ const Home = () => {
             </div>
           </div>
         </section>
-
       </main>
 
       <Footer />
