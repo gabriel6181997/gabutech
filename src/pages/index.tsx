@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ButtonNavigation } from "src/components/separate/ButtonNavigation";
 import { Footer } from "src/components/separate/Footer";
 import { Header } from "src/components/separate/Header";
-import { Card } from "src/components/shared/Card";
+import { Card2 } from "src/components/shared/Card2";
 import { MoreButton } from "src/components/shared/MoreButton";
 import { Title } from "src/components/shared/Title";
 import { ICONS } from "src/utils/iconutil";
@@ -99,9 +99,9 @@ const Home = () => {
             </Title>
 
             <ul className="flex flex-col md:flex-row gap-6 md:justify-center pt-8">
-              <Card />
-              <Card />
-              <Card />
+              <Card2 />
+              <Card2 />
+              <Card2 />
             </ul>
             <div className="pt-8 text-center">
               <MoreButton href="/work" />
