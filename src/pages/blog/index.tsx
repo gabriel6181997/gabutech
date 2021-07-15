@@ -20,36 +20,26 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-{
-  /* <ul>
-  {props.blogs.contents.map((blog) => {
-    return (
-      <li key={blog.id}>
-        <Link href={`/blog/${blog.id}`}>
-          <a>{blog.title}</a>
-        </Link>
-      </li>
-    );
-  })}
-</ul> */
-}
+const Blog: NextPage<Props> = (props) => {
 
-const Blog: NextPage<Props> = () => {
   return (
     <Layout>
       <Title bigTitle variant="box" className="text-3xl md:text-4xl">
         Blog
       </Title>
       <ul className="flex flex-wrap gap-10 justify-center mt-10">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {props.blogs.contents.map((blog) => {
+          return (
+            <Card
+              key={blog.title}
+              href={`/blog/${blog.id}`}
+              image={blog.image.url}
+              title={blog.title}
+              date={blog.createdAt}
+            />
+
+          )
+        })}
       </ul>
 
       <div className="mt-16">
