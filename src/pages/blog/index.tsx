@@ -3,7 +3,6 @@ import { Layout } from "src/components/separate/Layout";
 import { Card } from "src/components/shared/Card";
 import { Pagination } from "src/components/shared/Pagination";
 import { Title } from "src/components/shared/Title";
-import { client } from "src/libs/client";
 import type { Blogs } from "src/types/types";
 
 type Props = {
@@ -11,7 +10,18 @@ type Props = {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data: Blogs = await client.get({ endpoint: "blog" });
+  const key = {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    headers: { "X-API-KEY": process.env.API_KEY as string },
+  };
+
+  const data: Blogs = await fetch("https://gabutech.microcms.io/api/v1/blog?offset=0&limit=9", key)
+    .then((res) => {
+      return res.json();
+    })
+    .catch(() => {
+      return null;
+    });
 
   return {
     props: {
@@ -21,7 +31,6 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 const Blog: NextPage<Props> = (props) => {
-
   return (
     <Layout>
       <Title bigTitle variant="box" className="text-3xl md:text-4xl">
@@ -37,16 +46,13 @@ const Blog: NextPage<Props> = (props) => {
               title={blog.title}
               date={blog.createdAt}
             />
-
-          )
+          );
         })}
       </ul>
 
       <div className="mt-16">
-        <Pagination />
+        <Pagination totalCount={props.blogs.totalCount} />
       </div>
-
-
     </Layout>
   );
 };
