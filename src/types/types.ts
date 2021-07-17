@@ -70,3 +70,13 @@ export type History = {
   title: string;
   year: string;
 };
+
+export type TableOfContent = {
+  id: string;
+  level: string;
+  text: string;
+};
+
+export type TableOfContentsType = TableOfContent[];
+
+

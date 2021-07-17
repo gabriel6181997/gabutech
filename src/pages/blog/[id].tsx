@@ -1,12 +1,18 @@
+import cheerio from "cheerio";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Image from "next/image";
 import { Layout } from "src/components/separate/Layout";
+import { TableOfContents } from "src/components/separate/TableOfContents";
 import { Title } from "src/components/shared/Title";
+import { addClassNames } from "src/libs/addClassNames";
 import { client } from "src/libs/client";
-import type { Blog, Blogs } from "src/types/types";
+import { fixDateFormat } from "src/libs/fixDateFormat";
+import type { Blog, Blogs, TableOfContentsType } from "src/types/types";
 
 type Props = {
   blogDetail: Blog;
+  tableOfContents: TableOfContentsType;
+  parsedHtml: HTMLElement;
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -14,7 +20,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = data.contents.map((content) => {
     return `/blog/${content.id}`;
   });
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -23,57 +29,58 @@ export const getStaticProps: GetStaticProps = async (context) => {
     return blog.id === context.params?.id;
   });
 
+  const $ = cheerio.load(blogDetail[0].content);
+  const headings = $("h2").toArray();
+
+  const tableOfContents = headings.map((data: any) => {
+    return {
+      text: data.children[0].data,
+      id: data.attribs.id,
+      level: data.name,
+    };
+  });
+
+  const classNamesAddedHtml = addClassNames($);
+
   return {
-    props: { blogDetail: blogDetail[0] },
+    props: {
+      blogDetail: blogDetail[0],
+      tableOfContents: tableOfContents,
+      parsedHtml: classNamesAddedHtml.html(),
+    },
   };
 };
 
-//blog id: g889l0ol1
-// <main>
-//   <h1>{props.blogDetail.title}</h1>
-//   <p>{props.blogDetail.publishedAt}</p>
-//   <p>{props.blogDetail.category && `${props.blogDetail.category.name}`}</p>
-//   <article
-//     dangerouslySetInnerHTML={{
-//       // eslint-disable-next-line @typescript-eslint/naming-convention
-//       __html: `${props.blogDetail.content}`,
-//     }}
-//   />
-// </main>
-
-const BlogId: NextPage<Props> = () => {
-
+const BlogId: NextPage<Props> = (props) => {
   return (
     <>
       <Layout>
-        <Title bigTitle variant="box" className="mb-6 text-4xl">
-          タイトルタイトル
+        <Title bigTitle variant="box" className="mb-6 text-3xl md:text-4xl">
+          {props.blogDetail.title}
         </Title>
-        <Image src="/img/blogillustration.png" alt="blog-picture" width={900} height={450} />
-        <ul className="flex flex-wrap gap-3 mt-8">
-          <li className="p-3 font-bold text-blue-900 rounded-xl border-2 border-blue-900">JavaScript</li>
-          <li className="p-3 font-bold text-blue-900 rounded-xl border-2 border-blue-900">Next.js</li>
+        <Image src={props.blogDetail.image.url} alt="blog-picture" width={900} height={450} />
+        <ul className="flex flex-wrap gap-3 mt-6">
+          <li className="p-3 text-sm md:text-base font-bold text-blue-900 rounded-xl border-2 border-blue-900">
+            JavaScript
+          </li>
+          <li className="p-3 text-sm md:text-base font-bold text-blue-900 rounded-xl border-2 border-blue-900">
+            Next.js
+          </li>
         </ul>
-        <p className="mt-3 font-bold">xxxx年xx月xx日</p>
-        <article className="mt-4">
-          <Title variant="box" className="text-2xl">
-            h2タイトル
-          </Title>
-          <p className="my-4">
-            dkfgshsdkf hdgkfln hdilsfn kldf hjksf bkjdsf bksd bkfdb k bjkfdb kj bksdf bjkdf bjksfdg bskdfb kfb ksdfbj
-            kjfb kjsdfb kjdfb kjdfb kdfbk dfbk jdfhlj niosdfjn iogmjldfij dfmj fdmj ldfmj lifd fd fmj lsmj lisfdj fgmj
-            lsf ijglfd mjidflsg{" "}
-          </p>
-          <Title variant="box" className="text-2xl">
-            h2タイトル
-          </Title>
-            <h3 className="my-2 underline">h3タイトル</h3>
-          <p className="mt-2">
-            dkfgshsdkf hdgkfln hdilsfn kldf hjksf bkjdsf bksd bkfdb k bjkfdb kj bksdf bjkdf bjksfdg bskdfb kfb ksdfbj
-            kjfb kjsdfb kjdfb kjdfb kdfbk dfbk jdfhlj niosdfjn iogmjldfij dfmj fdmj ldfmj lifd fd fmj lsmj lisfdj fgmj
-            lsf ijglfd mjidflsg{" "}
-          </p>
-        </article>
+        <p className="mt-3 font-bold">{fixDateFormat(props.blogDetail.createdAt)}</p>
+        {props.tableOfContents.length > 0 ? (
+          <div className="my-4">
+            <h3 className="pb-2 font-bold text-center">目次</h3>
+            <TableOfContents tableOfContents={props.tableOfContents} />
+          </div>
+        ) : null}
+        <article
+          className="mt-4"
+          dangerouslySetInnerHTML={{
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            __html: `${props.parsedHtml}`,
+          }}
+        />
       </Layout>
     </>
   );
