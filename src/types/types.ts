@@ -1,3 +1,9 @@
+export type Image = {
+  url: string;
+  height: number;
+  width: number;
+};
+
 export type Blog = {
   category?: {
     createdAt: string;
@@ -7,11 +13,7 @@ export type Blog = {
     revisedAt: string;
     updatedAt: string;
   };
-  image: {
-    url: string;
-    height: number;
-    width: number;
-  }
+  image: Image;
   content: string;
   createdAt: string;
   id: string;
@@ -37,16 +39,8 @@ export type Top = {
       aboutdescription: string;
       catchcopy: string;
       fieldId: string;
-      firstviewimage: {
-        height: number;
-        url: string;
-        width: number;
-      };
-      selfportrait: {
-        height: number;
-        url: string;
-        width: number;
-      };
+      firstviewimage: Image;
+      selfportrait: Image;
       title: string;
     };
   };
@@ -60,11 +54,7 @@ export type AboutType = {
       history: History[];
       shortdescription: string;
       skill: string;
-      thumbnail: {
-        height: number;
-        url: string;
-        width: number;
-      };
+      thumbnail: Image
     };
     createdAt: string;
     publishedAt: string;
