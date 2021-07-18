@@ -7,7 +7,7 @@ export const Header = () => {
   return (
     <header className="fixed top-0 right-0 left-0 z-50 h-10 md:h-20 dark:text-white bg-white dark:bg-gray-900">
       <div className="container flex items-center mx-auto">
-        <h1 className="md:p-2">
+        <h1 className="md:py-2">
           <Link href="/">
             <a>
               <Image src="/img/logo.png" alt="Gabutech" width={120} height={30} />
