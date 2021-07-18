@@ -1,7 +1,7 @@
 import type { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
-import { Layout } from "src/components/layout/Layout";
-import { Title } from "src/components/layout/Title";
+import { Layout } from "src/components/layouts/Layout";
+import { Title } from "src/components/layouts/Title";
 import { client } from "src/libs/client";
 import type { AboutType } from "src/types/types";
 

@@ -1,8 +1,8 @@
 import type {  NextPage } from "next";
-import { Layout } from "src/components/layout/Layout";
+import { Layout } from "src/components/layouts/Layout";
 // import { Card2 } from "src/components/shared/Card2";
 // import { Pagination } from "src/components/shared/Pagination";
-import { Title } from "src/components/layout/Title";
+import { Title } from "src/components/layouts/Title";
 
 
 const Blog: NextPage = () => {
