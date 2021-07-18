@@ -1,7 +1,7 @@
 import { Archivecard } from "src/components/separate/Archivecard";
-import { Categorycard } from "src/components/separate/Categorycard";
 import { Profilecard } from "src/components/separate/Profilecard";
 import { Searchbox } from "src/components/separate/Searchbar";
+import { Tagcard } from "src/components/separate/Tagcard";
 
 export const Sidebar = () => {
   return (
@@ -13,7 +13,7 @@ export const Sidebar = () => {
       </div>
 
       <div className="mt-10">
-        <Categorycard />
+        <Tagcard />
       </div>
 
       <div className="mt-10">
