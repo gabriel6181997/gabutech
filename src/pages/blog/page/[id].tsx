@@ -1,8 +1,8 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { Layout } from "src/components/separate/Layout";
-import { Card } from "src/components/shared/Card";
-import { Pagination } from "src/components/shared/Pagination";
-import { Title } from "src/components/shared/Title";
+import { Card } from "src/components/blogsandworks/Card";
+import { Pagination } from "src/components/blogsandworks/Pagination";
+import { Layout } from "src/components/layouts/Layout";
+import { Title } from "src/components/layouts/Title";
 import type { Blogs } from "src/types/types";
 
 const PER_PAGE = 9;

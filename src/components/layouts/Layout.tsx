@@ -1,9 +1,9 @@
 import type { ReactNode, VFC } from "react";
-import { Breadcrumb } from "src/components/separate/Breadcrumb";
-import { ButtonNavigation } from "src/components/separate/ButtonNavigation";
-import { Footer } from "src/components/separate/Footer";
-import { Header } from "src/components/separate/Header";
-import { Sidebar } from "src/components/separate/Sidebar";
+import { Breadcrumb } from "src/components/layouts/Breadcrumb";
+import { ButtonNavigation } from "src/components/layouts/ButtonNavigation";
+import { Footer } from "src/components/layouts/Footer";
+import { Header } from "src/components/layouts/Header";
+import { Sidebar } from "src/components/layouts/sidebar/Sidebar";
 
 type Props = {
   children: ReactNode;

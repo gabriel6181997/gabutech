@@ -1,12 +1,12 @@
 import type { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ButtonNavigation } from "src/components/separate/ButtonNavigation";
-import { Footer } from "src/components/separate/Footer";
-import { Header } from "src/components/separate/Header";
-import { Card2 } from "src/components/shared/Card2";
+import { Card2 } from "src/components/blogsandworks/Card2";
+import { ButtonNavigation } from "src/components/layouts/ButtonNavigation";
+import { Footer } from "src/components/layouts/Footer";
+import { Header } from "src/components/layouts/Header";
+import { Title } from "src/components/layouts/Title";
 import { MoreButton } from "src/components/shared/MoreButton";
-import { Title } from "src/components/shared/Title";
 import { client } from "src/libs/client";
 import type { Top } from "src/types/types";
 import { ICONS } from "src/utils/iconutil";

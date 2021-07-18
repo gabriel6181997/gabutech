@@ -1,7 +1,7 @@
-import { Archivecard } from "src/components/separate/Archivecard";
-import { Profilecard } from "src/components/separate/Profilecard";
-import { Searchbox } from "src/components/separate/Searchbar";
-import { Tagcard } from "src/components/separate/Tagcard";
+import { Archivecard } from "src/components/layouts/sidebar/Archivecard";
+import { Profilecard } from "src/components/layouts/sidebar/Profilecard";
+import { Searchbox } from "src/components/layouts/sidebar/Searchbar";
+import { Tagcard } from "src/components/layouts/sidebar/Tagcard";
 
 export const Sidebar = () => {
   return (
