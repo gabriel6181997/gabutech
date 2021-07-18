@@ -1,9 +1,9 @@
 import cheerio from "cheerio";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Image from "next/image";
-import { TableOfContents } from "src/components/blogsandworks/TableOfContents";
-import { Layout } from "src/components/layouts/Layout";
-import { Title } from "src/components/layouts/Title";
+import { TableOfContents } from "src/components/blogandwork/TableOfContents";
+import { Layout } from "src/components/layout/Layout";
+import { Title } from "src/components/layout/Title";
 import { addClassNames } from "src/libs/addClassNames";
 import { client } from "src/libs/client";
 import { fixDateFormat } from "src/libs/fixDateFormat";

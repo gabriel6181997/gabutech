@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { DarkModeSwitch } from "src/components/layouts/DarkModeSwitch";
+import { DarkModeSwitch } from "src/components/layout/DarkModeSwitch";
 import { NAVITEMS } from "src/utils/navitemutil";
 
 export const Header = () => {

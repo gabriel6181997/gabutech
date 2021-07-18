@@ -1,8 +1,8 @@
 import type { GetStaticProps, NextPage } from "next";
-import { Card } from "src/components/blogsandworks/Card";
-import { Pagination } from "src/components/blogsandworks/Pagination";
-import { Layout } from "src/components/layouts/Layout";
-import { Title } from "src/components/layouts/Title";
+import { Card } from "src/components/blogandwork/Card";
+import { Pagination } from "src/components/blogandwork/Pagination";
+import { Layout } from "src/components/layout/Layout";
+import { Title } from "src/components/layout/Title";
 import type { Blogs } from "src/types/types";
 
 type Props = {
