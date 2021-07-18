@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { GitHubSvg } from "src/components/icons/svg/GitHubSvg";
+import { TwitterSvg } from "src/components/icons/svg/TwitterSvg";
 import { MoreButton } from "src/components/shared/MoreButton";
-import { ICONS } from "src/utils/iconutil";
 
 export const Profilecard = () => {
   return (
@@ -14,23 +15,16 @@ export const Profilecard = () => {
         <hr className="mx-auto mt-5 w-24 h-1 border-0 border-t-[2px] border-blue-200" />
 
         <div className="flex gap-4 justify-center mt-5">
-          {ICONS.map((icon) => {
-            return (
-              <Link key={icon.link} href={icon.link}>
-                <a>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    className="block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current"
-                  >
-                    <path d={icon.path} />
-                  </svg>
-                </a>
-              </Link>
-            );
-          })}
+          <Link href="https://github.com/gabriel6181997">
+            <a>
+              <GitHubSvg className="block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current" />
+            </a>
+          </Link>
+          <Link href="https://twitter.com/gabu_ITengineer">
+            <a>
+              <TwitterSvg className="block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current" />
+            </a>
+          </Link>
         </div>
 
         <div className="mt-4">
@@ -39,4 +33,4 @@ export const Profilecard = () => {
       </div>
     </div>
   );
-}
+};

@@ -2,6 +2,8 @@ import type { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Card2 } from "src/components/blogandwork/Card2";
+import { GitHubSvg } from "src/components/icons/svg/GitHubSvg";
+import { TwitterSvg } from "src/components/icons/svg/TwitterSvg";
 import { ButtonNavigation } from "src/components/layouts/ButtonNavigation";
 import { Footer } from "src/components/layouts/Footer";
 import { Header } from "src/components/layouts/Header";
@@ -9,7 +11,6 @@ import { Title } from "src/components/layouts/Title";
 import { MoreButton } from "src/components/shared/MoreButton";
 import { client } from "src/libs/client";
 import type { Top } from "src/types/types";
-import { ICONS } from "src/utils/iconutil";
 
 export const getStaticProps: GetStaticProps = async () => {
   const data: Top = await client.get({ endpoint: "top" });
@@ -54,23 +55,16 @@ const Home: NextPage<Top> = (props) => {
               }}
             />
             <div className="flex gap-4">
-              {ICONS.map((icon) => {
-                return (
-                  <Link key={icon.link} href={icon.link}>
-                    <a>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        className="block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current"
-                      >
-                        <path d={icon.path} />
-                      </svg>
-                    </a>
-                  </Link>
-                );
-              })}
+              <Link href="https://github.com/gabriel6181997">
+                <a>
+                  <GitHubSvg className="block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current" />
+                </a>
+              </Link>
+              <Link href="https://twitter.com/gabu_ITengineer">
+                <a>
+                  <TwitterSvg className="block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current" />
+                </a>
+              </Link>
             </div>
 
             <Link href="/about">
