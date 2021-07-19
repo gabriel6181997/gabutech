@@ -3,6 +3,7 @@ import { Card } from "src/components/blogandwork/Card";
 import { Pagination } from "src/components/blogandwork/Pagination";
 import { Layout } from "src/components/layouts/Layout";
 import { Title } from "src/components/layouts/Title";
+import { client } from "src/libs/client";
 import type { Blogs } from "src/types/types";
 
 type Props = {
@@ -10,18 +11,7 @@ type Props = {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const key = {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    headers: { "X-API-KEY": process.env.API_KEY as string },
-  };
-
-  const data: Blogs = await fetch("https://gabutech.microcms.io/api/v1/blog?offset=0&limit=9", key)
-    .then((res) => {
-      return res.json();
-    })
-    .catch(() => {
-      return null;
-    });
+  const data: Blogs = await client.get({ endpoint: `blog?offset=0&limit=9` })
 
   return {
     props: {

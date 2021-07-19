@@ -3,6 +3,7 @@ import { Card } from "src/components/blogandwork/Card";
 import { Pagination } from "src/components/blogandwork/Pagination";
 import { Layout } from "src/components/layouts/Layout";
 import { Title } from "src/components/layouts/Title";
+import { client } from "src/libs/client";
 import type { Blogs } from "src/types/types";
 
 const PER_PAGE = 9;
@@ -12,14 +13,7 @@ type Props = {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const key = {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    headers: { "X-API-KEY": process.env.API_KEY as string },
-  };
-
-  const res = await fetch("https://gabutech.microcms.io/api/v1/blog", key);
-
-  const repos: Blogs = await res.json();
+  const data: Blogs = await client.get({ endpoint: "blog" });
 
   const range = (start: number, end: number) => {
     return [...Array(end - start + 1)].map((_, i) => {
@@ -27,7 +21,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     });
   };
 
-  const paths = range(1, Math.ceil(repos.totalCount / PER_PAGE)).map((repo) => {
+  const paths = range(1, Math.ceil(data.totalCount / PER_PAGE)).map((repo) => {
     return `/blog/page/${repo}`;
   });
 
@@ -38,18 +32,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id;
   const numberId = Number(id);
 
-  const key = {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    headers: { "X-API-KEY": process.env.API_KEY as string },
-  };
-
-  const data: Blogs = await fetch(`https://gabutech.microcms.io/api/v1/blog?offset=${(numberId -1)*9}&limit=9`, key)
-    .then((res) => {
-      return res.json();
-    })
-    .catch(() => {
-      return null;
-    });
+  const data: Blogs = await client.get({ endpoint: `blog?offset=${(numberId - 1) * 9}&limit=9` });
 
   return {
     props: {
