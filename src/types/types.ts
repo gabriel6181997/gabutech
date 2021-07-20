@@ -54,7 +54,7 @@ export type AboutType = {
       history: History[];
       shortdescription: string;
       skill: string;
-      thumbnail: Image
+      thumbnail: Image;
     };
     createdAt: string;
     publishedAt: string;
@@ -79,4 +79,18 @@ export type TableOfContent = {
 
 export type TableOfContentsType = TableOfContent[];
 
+export type Tags = {
+  contents: Tag[];
+  limit: number;
+  offset: number;
+  totalCount: number;
+};
 
+export type Tag = {
+  createdAt: string;
+  id: string;
+  publishedAt: string;
+  revisedAt: string;
+  tagName: string;
+  updatedAt: string;
+};
