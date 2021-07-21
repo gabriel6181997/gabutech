@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data: Blogs = await client.get({ endpoint: "blog" });
+  const data: Blogs = await client.get({ endpoint: "blogs" });
 
   const range = (start: number, end: number) => {
     return [...Array(end - start + 1)].map((_, i) => {
@@ -32,7 +32,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id;
   const numberId = Number(id);
 
-  const data: Blogs = await client.get({ endpoint: `blog?offset=${(numberId - 1) * 9}&limit=9` });
+  const data: Blogs = await client.get({ endpoint: `blogs?offset=${(numberId - 1) * 9}&limit=9` });
 
   return {
     props: {

@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data: Blogs = await client.get({ endpoint: `blog?offset=0&limit=9` })
+  const data: Blogs = await client.get({ endpoint: `blogs?offset=0&limit=9` })
 
   return {
     props: {

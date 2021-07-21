@@ -16,7 +16,7 @@ type Props = {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data: Blogs = await client.get({ endpoint: "blog" });
+  const data: Blogs = await client.get({ endpoint: "blogs" });
   const paths = data.contents.map((content) => {
     return `/blog/${content.id}`;
   });
@@ -24,7 +24,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const blogs: Blogs = await client.get({ endpoint: "blog" });
+  const blogs: Blogs = await client.get({ endpoint: "blogs" });
   const blogDetail = blogs.contents.filter((blog) => {
     return blog.id === context.params?.id;
   });
