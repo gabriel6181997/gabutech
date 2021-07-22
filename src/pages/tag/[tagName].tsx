@@ -56,7 +56,7 @@ export const tagName: NextPage<Props> = (props) => {
             );
           })
         ) : (
-          <p>該当記事はありません！</p>
+          <p>該当記事は見つかりませんでした！</p>
         )}
       </ul>
     </Layout>
