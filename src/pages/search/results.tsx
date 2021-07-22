@@ -13,8 +13,12 @@ const ResultsPage: NextPage = () => {
   const [results, setResults] = useState<Blogs>();
   useEffect(() => {
     async () => {
-      const data: Blogs = await client.get({ endpoint: `blogs?q=${searchKeyword}` });
-      setResults(data);
+      try {
+        const data: Blogs = await client.get({ endpoint: `blogs?q=${searchKeyword}` });
+        setResults(data);
+      } catch {
+        throw new Error(`ブログのデータを取得できませんでした！`);
+      }
     };
   }, [searchKeyword]);
 

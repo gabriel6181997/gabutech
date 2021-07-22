@@ -7,8 +7,12 @@ export const Tagcard = () => {
   const [tags, setTags] = useState<Tags>();
 
   const getTags = useCallback(async () => {
-    const res: Tags = await client.get({ endpoint: "tags" });
-    setTags(res);
+    try {
+      const res: Tags = await client.get({ endpoint: "tags" });
+      setTags(res);
+    } catch (e) {
+      throw new Error(`タグのデータを取得できませんでした！`)
+    }
   }, []);
 
   useEffect(() => {
