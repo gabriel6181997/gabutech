@@ -94,3 +94,13 @@ export type Tag = {
   tagName: string;
   updatedAt: string;
 };
+
+export type ProfileCard = {
+  createdAt: string;
+  github: string;
+  profileimage: Image;
+  publishedAt: string;
+  revisedAt: string;
+  twitter: string;
+  updatedAt: string;
+};
