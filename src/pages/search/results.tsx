@@ -25,9 +25,7 @@ const ResultsPage: NextPage = () => {
         {searchKeyword}の検索結果
       </Title>
       <ul className="flex flex-wrap gap-10 justify-center mt-10">
-        {typeof results === "undefined" ? (
-          <p>検索結果の型は未定義です。</p>
-        ) : results?.contents.length > 0 ? (
+        {(results?.contents.length ?? 0) > 0 ? (
           results?.contents.map((result) => {
             return (
               <Card
