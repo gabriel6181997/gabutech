@@ -1,29 +1,9 @@
-import { useRouter } from "next/dist/client/router";
-import  { memo, useCallback, useState } from "react";
-import { SearchSvg } from "src/components/icons/svg/SearchSvg";
+import  { memo } from "react";
+import { SearchSvg  }from "src/components/icons/svg/SearchSvg";
+import { useSearch } from "src/libs/hooks/useSearch";
 
 export const Searchbox = memo(() => {
-  const router = useRouter();
-  const [searchKeyword, setSearchKeyword] = useState("");
-
-  const handleSearchKeyword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchKeyword(e.target.value);
-  }, []);
-
-  const handleSearch = useCallback(
-    (e: React.ChangeEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      if (searchKeyword === "") {
-        alert("キーワードを入力してください！");
-        return;
-      };
-      router.push({
-        pathname: "/search/result",
-        query: { keyword: searchKeyword }
-      });
-    },
-    [router, searchKeyword]
-  );
+  const { searchKeyword, handleSearchKeyword, handleSearch } = useSearch();
 
   return (
     <form onSubmit={handleSearch} className="relative">
