@@ -11,15 +11,12 @@ const ResultsPage: NextPage = () => {
   const router = useRouter();
   const searchKeyword = router.query.keyword;
   const [results, setResults] = useState<Blogs>();
+
   useEffect(() => {
-    async () => {
-      try {
-        const data: Blogs = await client.get({ endpoint: `blogs?q=${searchKeyword}` });
-        setResults(data);
-      } catch {
-        throw new Error(`ブログのデータを取得できませんでした！`);
-      }
-    };
+    (async () => {
+      const data: Blogs = await client.get({ endpoint: `blogs?q=${searchKeyword}` });
+      setResults(data);
+    })();
   }, [searchKeyword]);
 
   return (
@@ -27,18 +24,24 @@ const ResultsPage: NextPage = () => {
       <Title variant="box" className="text-3xl md:text-4xl" bigTitle>
         {searchKeyword}の検索結果
       </Title>
-      <ul>
-        {results?.contents.map((result) => {
-          return (
-            <Card
-              key={result.title}
-              href={`/blog/${result.id}`}
-              image={result.image.url}
-              title={result.title}
-              date={result.createdAt}
-            />
-          );
-        })}
+      <ul className="flex flex-wrap gap-10 justify-center mt-10">
+        {typeof results === "undefined" ? (
+          <p>検索結果の型は未定義です。</p>
+        ) : results?.contents.length > 0 ? (
+          results?.contents.map((result) => {
+            return (
+              <Card
+                key={result.title}
+                href={`/blog/${result.id}`}
+                image={result.image.url}
+                title={result.title}
+                date={result.createdAt}
+              />
+            );
+          })
+        ) : (
+          <p className="font-bold">該当記事は見つかりませんでした！</p>
+        )}
       </ul>
     </Layout>
   );
