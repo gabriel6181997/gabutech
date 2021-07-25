@@ -13,6 +13,7 @@ export type Blog = {
     revisedAt: string;
     updatedAt: string;
   };
+  tag?: Tag[];
   image: Image;
   content: string;
   createdAt: string;
