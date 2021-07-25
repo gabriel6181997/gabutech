@@ -15,7 +15,12 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const About: NextPage<AboutType> = (props) => {
+type Props = {
+  about: AboutType,
+}
+
+const About: NextPage<Props> = (props) => {
+
   return (
     <>
       <Layout>
@@ -29,7 +34,7 @@ const About: NextPage<AboutType> = (props) => {
           className="my-6"
           dangerouslySetInnerHTML={{
             // eslint-disable-next-line @typescript-eslint/naming-convention
-            __html: `${props.about.about.shortdescription}`,
+            __html: `${props.about.shortdescription}`,
           }}
         />
 
@@ -38,7 +43,7 @@ const About: NextPage<AboutType> = (props) => {
         </Title>
 
         <ul className="my-7 space-y-6">
-          {props.about.about.history.map((history) => {
+          {props.about.history.map((history) => {
             return (
               <li className="flex items-center" key={history.title}>
                 <p className="box-border block p-2 mr-4 md:mr-8 text-sm font-bold text-center bg-blue-200 rounded-xl">
@@ -62,7 +67,7 @@ const About: NextPage<AboutType> = (props) => {
           className="my-7"
           dangerouslySetInnerHTML={{
             // eslint-disable-next-line @typescript-eslint/naming-convention
-            __html: `${props.about.about.skill}`,
+            __html: `${props.about.skill}`,
           }}
         />
 
@@ -74,7 +79,7 @@ const About: NextPage<AboutType> = (props) => {
           className="mt-7"
           dangerouslySetInnerHTML={{
             // eslint-disable-next-line @typescript-eslint/naming-convention
-            __html: `${props.about.about.conclusion}`,
+            __html: `${props.about.conclusion}`,
           }}
         />
       </Layout>

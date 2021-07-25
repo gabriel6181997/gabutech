@@ -46,20 +46,16 @@ export type Top = {
 };
 
 export type AboutType = {
-  about: {
-    about: {
-      conclusion: string;
-      fieldId: string;
-      history: History[];
-      shortdescription: string;
-      skill: string;
-      thumbnail: Image;
-    };
-    createdAt: string;
-    publishedAt: string;
-    revisedAt: string;
-    updatedAt: string;
-  };
+  conclusion: string;
+  fieldId: string;
+  history: History[];
+  shortdescription: string;
+  skill: string;
+  thumbnail: Image;
+  createdAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  updatedAt: string;
 };
 
 export type History = {
