@@ -60,12 +60,16 @@ const BlogId: NextPage<Props> = (props) => {
         </Title>
         <Image src={props.blogDetail.image.url} alt="blog-picture" width={900} height={450} />
         <ul className="flex flex-wrap gap-3 mt-6">
-          <li className="p-3 text-sm md:text-base font-bold text-blue-900 rounded-xl border-2 border-blue-900">
-            JavaScript
-          </li>
-          <li className="p-3 text-sm md:text-base font-bold text-blue-900 rounded-xl border-2 border-blue-900">
-            Next.js
-          </li>
+          {props.blogDetail.tags?.map((tag, index) => {
+            return (
+              <li
+                key={index}
+                className="p-3 text-sm md:text-base font-bold text-blue-900 rounded-xl border-2 border-blue-900"
+              >
+                {tag.tagName}
+              </li>
+            );
+          })}
         </ul>
         <p className="mt-3 font-bold">{fixDateFormat(props.blogDetail.createdAt)}</p>
         {props.tableOfContents.length > 0 ? (
