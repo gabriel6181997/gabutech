@@ -22,21 +22,26 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const Home: NextPage<Top> = (props) => {
+type Props = {
+  top: Top;
+};
+
+const Home: NextPage<Props> = (props) => {
+
   return (
     <>
       <Header />
       <main className="mx-auto mt-10 md:mt-20">
         <div className="container block md:flex md:flex-row-reverse md:justify-center lg:justify-around items-center mx-auto">
-          <Image src={props.top.top.firstviewimage.url} alt="firstview" width={550} height={550} />
+          <Image src={props.top.firstviewimage.url} alt="firstview" width={550} height={550} />
           <div className="mt-5 md:mt-0 md:mr-5 lg:mr-0">
             <p className="pb-2 text-3xl sm:text-4xl lg:text-5xl font-bold">ガブリエル</p>
-            <p className="mb-6 md:mb-16 text-sm md:text-base">{props.top.top.title}</p>
+            <p className="mb-6 md:mb-16 text-sm md:text-base">{props.top.title}</p>
 
             <article
               dangerouslySetInnerHTML={{
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                __html: `${props.top.top.catchcopy}`,
+                __html: `${props.top.catchcopy}`,
               }}
             />
           </div>
@@ -51,20 +56,37 @@ const Home: NextPage<Top> = (props) => {
               className="py-6 text-sm md:text-base leading-normal"
               dangerouslySetInnerHTML={{
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                __html: `${props.top.top.aboutdescription}`,
+                __html: `${props.top.aboutdescription}`,
               }}
             />
             <div className="flex gap-4">
-              <Link href="https://github.com/gabriel6181997">
-                <a>
-                  <GitHubSvg className="block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current" />
-                </a>
-              </Link>
-              <Link href="https://twitter.com/gabu_ITengineer">
-                <a>
-                  <TwitterSvg className="block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current" />
-                </a>
-              </Link>
+              {props.top.githublink ? (
+                <Link href={props.top.githublink}>
+                  <a>
+                    <GitHubSvg className="block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current" />
+                  </a>
+                </Link>
+              ) : (
+                <Link href="https://github.com/gabriel6181997">
+                  <a>
+                    <GitHubSvg className="block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current" />
+                  </a>
+                </Link>
+              )}
+
+              {props.top.twitterlink ? (
+                <Link href={props.top.twitterlink}>
+                  <a>
+                    <TwitterSvg className="block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current" />
+                  </a>
+                </Link>
+              ) : (
+                <Link href="https://twitter.com/gabu_ITengineer">
+                  <a>
+                    <TwitterSvg className="block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current" />
+                  </a>
+                </Link>
+              )}
             </div>
 
             <Link href="/about">
@@ -76,7 +98,7 @@ const Home: NextPage<Top> = (props) => {
           </div>
 
           <div className="mt-8 md:mt-0 text-center md:text-left">
-            <Image src={props.top.top.selfportrait.url} alt="self" width={200} height={300} />
+            <Image src={props.top.selfportrait.url} alt="self" width={200} height={300} />
           </div>
         </section>
 

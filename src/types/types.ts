@@ -32,19 +32,17 @@ export type Blogs = {
 };
 
 export type Top = {
-  top: {
-    createdAt: string;
-    publishedAt: string;
-    revisedAt: string;
-    top: {
-      aboutdescription: string;
-      catchcopy: string;
-      fieldId: string;
-      firstviewimage: Image;
-      selfportrait: Image;
-      title: string;
-    };
-  };
+  createdAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  aboutdescription: string;
+  catchcopy: string;
+  fieldId: string;
+  firstviewimage: Image;
+  selfportrait: Image;
+  title: string;
+  githublink: string;
+  twitterlink: string;
 };
 
 export type AboutType = {
