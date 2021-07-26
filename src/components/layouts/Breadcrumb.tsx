@@ -1,6 +1,13 @@
+import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
+import { memo } from "react";
 
-export const Breadcrumb = () => {
+export const Breadcrumb = memo(() => {
+  const router = useRouter();
+  const currentPagePath = router.asPath;
+
+  console.log(currentPagePath)
+
   return (
     <div className="container my-3">
       <ul className="flex">
@@ -14,4 +21,7 @@ export const Breadcrumb = () => {
       </ul>
     </div>
   );
-};
+});
+
+Breadcrumb.displayName = "Breadcrumb";
+
