@@ -1,5 +1,4 @@
 import type { ReactNode, VFC } from "react";
-import { Breadcrumb } from "src/components/layouts/Breadcrumb";
 import { ButtonNavigation } from "src/components/layouts/ButtonNavigation";
 import { Footer } from "src/components/layouts/Footer";
 import { Header } from "src/components/layouts/Header";
@@ -14,7 +13,6 @@ export const Layout: VFC<Props> = (props) => {
     <>
       <Header />
       <div className="md:my-20 mt-12 mb-20">
-        <Breadcrumb />
         <div className="container block md:flex">
           <main className="md:w-2/3">{props.children}</main>
 
