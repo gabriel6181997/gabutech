@@ -99,3 +99,11 @@ export type ProfileCard = {
   twitter: string;
   updatedAt: string;
 };
+
+export type PrivacyType = {
+  content: string;
+  createdAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  updatedAt: string;
+};
