@@ -7,7 +7,7 @@ const NAVITEMS = [
   },
   {
     href: "/privacy",
-    title: "プライバシー",
+    title: "プライバシーポリシー",
   },
   {
     href: "/disclaimer",
