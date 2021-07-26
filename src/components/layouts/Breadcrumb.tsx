@@ -6,7 +6,6 @@ export const Breadcrumb = memo(() => {
   const router = useRouter();
   const currentPagePath = router.asPath;
 
-  console.log(currentPagePath)
 
   return (
     <div className="container my-3">
