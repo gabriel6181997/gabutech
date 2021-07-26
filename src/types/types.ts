@@ -107,3 +107,12 @@ export type PrivacyType = {
   revisedAt: string;
   updatedAt: string;
 };
+
+export type DisclaimerType = {
+  content: string;
+  createdAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  updatedAt: string;
+};
+
