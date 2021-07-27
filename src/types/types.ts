@@ -116,3 +116,14 @@ export type DisclaimerType = {
   updatedAt: string;
 };
 
+export type BlogDateInfo = {
+  contents: BlogDateInfoContent[] | null;
+  limit: number;
+  offset: number;
+  totalCount: number;
+};
+
+export type BlogDateInfoContent = {
+  id: string;
+  publishedAt: string
+}
