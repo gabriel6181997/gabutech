@@ -10,7 +10,7 @@ import { fixDateFormat } from "src/libs/fixDateFormat";
 import type { Blog, Blogs, TableOfContentsType } from "src/types/types";
 
 type Props = {
-  blogDetail: Blog;
+  blog: Blog;
   tableOfContents: TableOfContentsType;
   parsedHtml: HTMLElement;
 };
@@ -24,12 +24,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const blogs: Blogs = await client.get({ endpoint: "blogs" });
-  const blogDetail = blogs.contents.filter((blog) => {
-    return blog.id === context.params?.id;
-  });
+  const id = context.params?.id as string;
+  const blog: Blog = await client.get({ endpoint: "blogs", contentId: id });
+  const blogDetail = blog.content;
 
-  const $ = cheerio.load(blogDetail[0].content);
+  const $ = cheerio.load(blogDetail);
   const headings = $("h2").toArray();
 
   const tableOfContents = headings.map((data: any) => {
@@ -44,7 +43,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      blogDetail: blogDetail[0],
+      blog: blog,
       tableOfContents: tableOfContents,
       parsedHtml: classNamesAddedHtml.html(),
     },
@@ -56,11 +55,11 @@ const BlogId: NextPage<Props> = (props) => {
     <>
       <Layout>
         <Title bigTitle variant="box" className="mb-6 text-3xl md:text-4xl">
-          {props.blogDetail.title}
+          {props.blog.title}
         </Title>
-        <Image src={props.blogDetail.image.url} alt="blog-picture" width={900} height={450} />
+        <Image src={props.blog.image.url} alt="blog-picture" width={900} height={450} />
         <ul className="flex flex-wrap gap-3 mt-6">
-          {props.blogDetail.tags?.map((tag, index) => {
+          {props.blog.tags?.map((tag, index) => {
             return (
               <li
                 key={index}
@@ -71,7 +70,7 @@ const BlogId: NextPage<Props> = (props) => {
             );
           })}
         </ul>
-        <p className="mt-3 font-bold">{fixDateFormat(props.blogDetail.createdAt)}</p>
+        <p className="mt-3 font-bold">{fixDateFormat(props.blog.createdAt)}</p>
         {props.tableOfContents.length > 0 ? (
           <div className="my-4">
             <h3 className="pb-2 font-bold text-center">目次</h3>
