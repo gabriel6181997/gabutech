@@ -70,7 +70,7 @@ const BlogId: NextPage<Props> = (props) => {
             );
           })}
         </ul>
-        <p className="mt-3 font-bold">{fixDateFormat(props.blog.createdAt)}</p>
+        <p className="mt-3 font-bold">{fixDateFormat(props.blog.publishedAt)}</p>
         {props.tableOfContents.length > 0 ? (
           <div className="my-4">
             <h3 className="pb-2 font-bold text-center">目次</h3>
