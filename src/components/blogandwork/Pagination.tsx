@@ -1,3 +1,4 @@
+import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import type { VFC } from "react";
 
@@ -6,6 +7,9 @@ type Props = {
 };
 
 export const Pagination: VFC<Props> = (props) => {
+  const router = useRouter();
+  const pathname = router.pathname;
+
   const PER_PAGE = 9;
 
   const range = (start: number, end: number) => {
@@ -22,9 +26,16 @@ export const Pagination: VFC<Props> = (props) => {
             key={index}
             className="block w-10 h-10 leading-10 text-center text-blue-300 hover:text-white hover:bg-blue-200 border-2 border-blue-200 transition-colors duration-300"
           >
-            <Link href={`/blog/page/${number}`}>
-              <a>{number}</a>
-            </Link>
+            {pathname.includes("blog") ? (
+              <Link href={`/blog/page/${number}`}>
+                <a>{number}</a>
+              </Link>
+            ) : null}
+            {pathname.includes("work") ? (
+              <Link href={`/work/page/${number}`}>
+                <a>{number}</a>
+              </Link>
+            ) : null}
           </li>
         );
       })}
