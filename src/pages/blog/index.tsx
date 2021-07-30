@@ -40,9 +40,11 @@ const Blog: NextPage<Props> = (props) => {
         })}
       </ul>
 
-      <div className="mt-16">
-        <Pagination totalCount={props.blogs.totalCount} />
-      </div>
+      {props.blogs.totalCount > 9 ? (
+        <div className="mt-16">
+          <Pagination totalCount={props.blogs.totalCount} />
+        </div>
+      ) : null}
     </Layout>
   );
 };
