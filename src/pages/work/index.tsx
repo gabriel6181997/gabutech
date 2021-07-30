@@ -1,40 +1,53 @@
-import type {  NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
+import { Card } from "src/components/blogandwork/Card";
+import { Pagination } from "src/components/blogandwork/Pagination";
 import { Layout } from "src/components/layouts/Layout";
-// import { Card2 } from "src/components/shared/Card2";
-// import { Pagination } from "src/components/shared/Pagination";
 import { Title } from "src/components/layouts/Title";
+import { client } from "src/libs/client";
+import type { Works } from "src/types/types";
 
+export const getStaticProps: GetStaticProps = async () => {
+  const data: Works = await client.get({ endpoint: `works?offset=0&limit=9` });
 
-const Blog: NextPage = () => {
+  return {
+    props: {
+      works: data,
+    },
+  };
+};
+
+type Props = {
+  works: Works;
+};
+
+const Work: NextPage<Props> = (props) => {
   return (
     <Layout>
       <Title bigTitle variant="box" className="text-3xl md:text-4xl">
         Work
       </Title>
 
-      <p className="mt-6 font-bold text-center">プロダクトが出来上がり次第、こちらで紹介します。</p>
-
-      {/* <ul className="flex flex-wrap gap-10 justify-center mt-10">
-        <Card2 />
-        <Card2 />
-        <Card2 />
-        <Card2 />
-        <Card2 />
-        <Card2 />
-        <Card2 />
-        <Card2 />
-        <Card2 />
+      <ul className="flex flex-wrap gap-10 justify-center mt-10">
+        {props.works.contents.map((work) => {
+          return (
+            <Card
+              key={work.title}
+              href={`/work/${work.id}`}
+              image={work.image.url}
+              title={work.title}
+              date={work.publishedAt}
+            />
+          );
+        })}
       </ul>
 
-      <div className="mt-16">
-        <Pagination
-          totalCount={10}
-        />
-      </div> */}
-
-
+      {props.works.totalCount > 9 ? (
+        <div className="mt-16">
+          <Pagination totalCount={props.works.totalCount} />
+        </div>
+      ) : null}
     </Layout>
   );
 };
 
-export default Blog;
+export default Work;
