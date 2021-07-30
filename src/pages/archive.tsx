@@ -37,7 +37,7 @@ const Archive = () => {
       </Title>
       <ul className="flex flex-wrap gap-10 justify-center mt-10">
         {isLoading ? (
-          <ReactLoading type="spin" color="#BFDBFE" height={"20%"} width={"20%"} />
+          <ReactLoading type="spin" color="#BFDBFE" height={"10%"} width={"10%"} />
         ) : (
           blogInfo?.contents.map((blog, index) => {
             return (
