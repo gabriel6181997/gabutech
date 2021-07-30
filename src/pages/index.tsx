@@ -2,7 +2,6 @@ import type { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Card } from "src/components/blogandwork/Card";
-import { Card2 } from "src/components/blogandwork/Card2";
 import { GitHubSvg } from "src/components/icons/svg/GitHubSvg";
 import { TwitterSvg } from "src/components/icons/svg/TwitterSvg";
 import { ButtonNavigation } from "src/components/layouts/ButtonNavigation";
@@ -11,17 +10,20 @@ import { Header } from "src/components/layouts/Header";
 import { Title } from "src/components/layouts/Title";
 import { MoreButton } from "src/components/shared/MoreButton";
 import { client } from "src/libs/client";
-import type { Blogs, Top } from "src/types/types";
+import type { Blogs, Top, Works } from "src/types/types";
 
 export const getStaticProps: GetStaticProps = async () => {
   const data: Top = await client.get({ endpoint: "top" });
 
   const blogData: Blogs = await client.get({ endpoint: `blogs?limit=3&orders=-publishedAt` });
 
+  const workData: Works = await client.get({ endpoint: `works?limit=3&orders=-publishedAt` });
+
   return {
     props: {
       top: data,
       blogData: blogData,
+      workData: workData,
     },
   };
 };
@@ -29,10 +31,10 @@ export const getStaticProps: GetStaticProps = async () => {
 type Props = {
   top: Top;
   blogData: Blogs;
+  workData: Works;
 };
 
 const Home: NextPage<Props> = (props) => {
-  
   return (
     <>
       <Header />
@@ -120,7 +122,7 @@ const Home: NextPage<Props> = (props) => {
                     href={`/blog/${blog.id}`}
                     image={blog.image.url}
                     title={blog.title}
-                    date={blog.createdAt}
+                    date={blog.publishedAt}
                   />
                 );
               })}
@@ -139,9 +141,17 @@ const Home: NextPage<Props> = (props) => {
             </Title>
 
             <ul className="flex flex-col md:flex-row gap-6 md:justify-center pt-8">
-              <Card2 />
-              <Card2 />
-              <Card2 />
+              {props.workData.contents.map((work, index) => {
+                return (
+                  <Card
+                    key={index}
+                    href={`/work/${work.id}`}
+                    image={work.image.url}
+                    title={work.title}
+                    date={work.publishedAt}
+                  />
+                );
+              })}
             </ul>
             <div className="pt-8 text-center">
               <MoreButton href="/work" />
