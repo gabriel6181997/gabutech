@@ -125,5 +125,24 @@ export type BlogDateInfo = {
 
 export type BlogDateInfoContent = {
   id: string;
-  publishedAt: string
-}
+  publishedAt: string;
+};
+
+export type Work = {
+  content: string;
+  createdAt: string;
+  id: string;
+  image: Image;
+  publishedAt: string;
+  revisedAt: string;
+  tags?: Tag[];
+  title: string;
+  updatedAt: string;
+};
+
+export type Works = {
+  contents: Work[];
+  limit: number;
+  offset: number;
+  totalCount: number;
+};
