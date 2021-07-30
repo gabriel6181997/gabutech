@@ -44,7 +44,7 @@ export const Archivecard = () => {
         {extractedBlogDate?.map((date, index) => {
           return (
             <li key={index} className="p-3 hover:text-blue-300 transition-colors duration-300">
-              <Link href="/">
+              <Link href={{ pathname: "/archive", query: { publishedAt: date } }}>
                 <a>&gt; {date}</a>
               </Link>
             </li>
