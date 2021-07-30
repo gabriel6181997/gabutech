@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { GitHubSvg } from "src/components/icons/svg/GitHubSvg";
 import { TwitterSvg } from "src/components/icons/svg/TwitterSvg";
 import { MoreButton } from "src/components/shared/MoreButton";
 import { client } from "src/libs/client";
 import type { ProfileCard } from "src/types/types";
 
-export const Profilecard = () => {
+export const Profilecard = memo(() => {
   const [info, setInfo] = useState<ProfileCard>();
 
   const getInfo = useCallback(async () => {
@@ -72,4 +72,6 @@ export const Profilecard = () => {
       </div>
     </div>
   );
-};
+});
+
+Profilecard.displayName = "Profilecard";
