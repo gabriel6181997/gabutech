@@ -16,13 +16,13 @@ const ResultsPage: NextPage = () => {
 
   const getInfo = useCallback(async () => {
     try {
-      const BlogData: Blogs = await client.get({
+      const blogData: Blogs = await client.get({
         endpoint: `blogs?q=${searchKeyword}`,
       });
-      const WorkData: Works = await client.get({
+      const workData: Works = await client.get({
         endpoint: `works?q=${searchKeyword}`,
       });
-      const data = [...BlogData.contents, ...WorkData.contents];
+      const data = [...blogData.contents, ...workData.contents];
       setResults(data);
     } catch (e) {
       throw new Error(`ブログの情報を取得できませんでした！`);
