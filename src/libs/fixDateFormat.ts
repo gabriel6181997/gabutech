@@ -1,5 +1,5 @@
-export const fixDateFormat = (createdAt: string) => {
-  const parsedTimestamp = Date.parse(createdAt);
+export const fixDateFormat = (publishedAt: string) => {
+  const parsedTimestamp = Date.parse(publishedAt);
   const newDate = new Date(parsedTimestamp);
   const newMonth = newDate.getMonth() + 1;
   const newDay = newDate.getDate();
