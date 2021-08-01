@@ -6,19 +6,23 @@ import { Card } from "src/components/blogandwork/Card";
 import { Layout } from "src/components/layouts/Layout";
 import { Title } from "src/components/layouts/Title";
 import { client } from "src/libs/client";
-import type { Blogs } from "src/types/types";
+import type { Blog, Blogs, Work, Works } from "src/types/types";
 
 const ResultsPage: NextPage = () => {
   const router = useRouter();
   const searchKeyword = router.query.keyword;
-  const [results, setResults] = useState<Blogs>();
+  const [results, setResults] = useState<Blog[] | Work[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getBlogInfo = useCallback(async () => {
+  const getInfo = useCallback(async () => {
     try {
-      const data: Blogs = await client.get({
+      const BlogData: Blogs = await client.get({
         endpoint: `blogs?q=${searchKeyword}`,
       });
+      const WorkData: Works = await client.get({
+        endpoint: `works?q=${searchKeyword}`,
+      });
+      const data = [...BlogData.contents, ...WorkData.contents];
       setResults(data);
     } catch (e) {
       throw new Error(`ブログの情報を取得できませんでした！`);
@@ -27,8 +31,8 @@ const ResultsPage: NextPage = () => {
   }, [searchKeyword]);
 
   useEffect(() => {
-    getBlogInfo();
-  }, [getBlogInfo]);
+    getInfo();
+  }, [getInfo]);
 
   return (
     <Layout>
@@ -38,8 +42,8 @@ const ResultsPage: NextPage = () => {
       <ul className="flex flex-wrap gap-10 justify-center mt-10">
         {isLoading ? (
           <ReactLoading type="spin" color="#BFDBFE" height={"10%"} width={"10%"} />
-        ) : (results?.contents.length ?? 0) > 0 ? (
-          results?.contents.map((result) => {
+        ) : (results?.length ?? 0) > 0 ? (
+          results?.map((result) => {
             return (
               <Card
                 key={result.title}
