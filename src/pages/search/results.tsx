@@ -46,7 +46,7 @@ const ResultsPage: NextPage = () => {
                 href={`/blog/${result.id}`}
                 image={result.image.url}
                 title={result.title}
-                date={result.createdAt}
+                date={result.publishedAt}
               />
             );
           })

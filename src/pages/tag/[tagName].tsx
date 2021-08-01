@@ -49,7 +49,7 @@ export const tagName: NextPage<Props> = (props) => {
               <Card
                 key={blog.id}
                 title={blog.title}
-                date={blog.createdAt}
+                date={blog.publishedAt}
                 href={`/blog/${blog.id}`}
                 image={blog.image.url}
               />

@@ -55,7 +55,7 @@ const BlogPageId: NextPage<Props> = (props) => {
               href={`/blog/${blog.id}`}
               image={blog.image.url}
               title={blog.title}
-              date={blog.createdAt}
+              date={blog.publishedAt}
             />
           );
         })}
