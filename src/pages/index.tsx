@@ -70,13 +70,13 @@ const Home: NextPage<Props> = (props) => {
               {props.top.githublink ? (
                 <Link href={props.top.githublink}>
                   <a>
-                    <GitHubSvg className="block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current" />
+                    <GitHubSvg className="block w-6 h-6 text-gray-400 fill-current" />
                   </a>
                 </Link>
               ) : (
                 <Link href="https://github.com/gabriel6181997">
                   <a>
-                    <GitHubSvg className="block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current" />
+                    <GitHubSvg className="block w-6 h-6 text-gray-400 fill-current" />
                   </a>
                 </Link>
               )}
@@ -84,13 +84,13 @@ const Home: NextPage<Props> = (props) => {
               {props.top.twitterlink ? (
                 <Link href={props.top.twitterlink}>
                   <a>
-                    <TwitterSvg className="block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current" />
+                    <TwitterSvg className="block w-6 h-6 text-gray-400 fill-current" />
                   </a>
                 </Link>
               ) : (
                 <Link href="https://twitter.com/gabu_ITengineer">
                   <a>
-                    <TwitterSvg className="block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current" />
+                    <TwitterSvg className="block w-6 h-6 text-gray-400 fill-current" />
                   </a>
                 </Link>
               )}
