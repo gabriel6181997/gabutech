@@ -3,7 +3,7 @@ import { Card } from "src/components/blogandwork/Card";
 import { Layout } from "src/components/layouts/Layout";
 import { Title } from "src/components/layouts/Title";
 import { client } from "src/libs/client";
-import type { Blogs, Tags } from "src/types/types";
+import type { Blog, Blogs, Tags, Work, Works } from "src/types/types";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const tags: Tags = await client.get({ endpoint: "tags" });
@@ -22,17 +22,23 @@ export const getStaticProps: GetStaticProps = async (context) => {
     return context.params?.tagName === tag.tagName;
   });
 
-  const blogs: Blogs = await client.get({
+  const blogData: Blogs = await client.get({
     endpoint: `blogs?filters=tags[contains]${tag?.id}`,
   });
 
+  const workData: Works = await client.get({
+    endpoint: `works?filters=tags[contains]${tag?.id}`,
+  });
+
+  const data = [...blogData.contents, ...workData.contents];
+
   return {
-    props: { blogs: blogs, tag: context.params?.tagName },
+    props: { data: data, tag: context.params?.tagName },
   };
 };
 
 type Props = {
-  blogs: Blogs;
+  data: Blog[] | Work[];
   tag: string;
 };
 
@@ -42,16 +48,24 @@ export const tagName: NextPage<Props> = (props) => {
       <Title variant="box" className="text-3xl md:text-4xl" bigTitle>
         {props.tag}のタグ一覧
       </Title>
-      <ul className="mt-10">
-        {props.blogs.contents.length > 0 ? (
-          props.blogs.contents.map((blog) => {
-            return (
+      <ul className="flex flex-wrap gap-10 justify-center mt-10">
+        {props.data.length > 0 ? (
+          props.data.map((datum, index) => {
+            return datum.isWork ? (
               <Card
-                key={blog.id}
-                title={blog.title}
-                date={blog.publishedAt}
-                href={`/blog/${blog.id}`}
-                image={blog.image.url}
+                key={index}
+                title={datum.title}
+                date={datum.publishedAt}
+                href={`/work/${datum.id}`}
+                image={datum.image.url}
+              />
+            ) : (
+              <Card
+                key={index}
+                title={datum.title}
+                date={datum.publishedAt}
+                href={`/blog/${datum.id}`}
+                image={datum.image.url}
               />
             );
           })
