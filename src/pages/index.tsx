@@ -38,7 +38,7 @@ const Home: NextPage<Props> = (props) => {
   return (
     <>
       <Header />
-      <main className="mx-auto mt-10 md:mt-20">
+      <main className="mx-auto mt-10 md:mt-[60px]">
         <div className="container block md:flex md:flex-row-reverse md:justify-center lg:justify-around items-center mx-auto">
           <Image src={props.top.firstviewimage.url} alt="firstview" width={550} height={550} />
           <div className="mt-5 md:mt-0 md:mr-5 lg:mr-0">

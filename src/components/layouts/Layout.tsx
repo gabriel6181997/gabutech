@@ -12,7 +12,7 @@ export const Layout: VFC<Props> = (props) => {
   return (
     <>
       <Header />
-      <div className="md:my-20 mt-12 mb-20">
+      <div className="mt-10 md:mt-[60px] mb-20">
         <div className="container block md:flex">
           <main className="md:w-2/3">{props.children}</main>
 
