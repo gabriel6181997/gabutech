@@ -2,12 +2,11 @@ import "src/styles/globals.css";
 
 import type { AppProps } from "next/app";
 import { NextSeo } from "next-seo";
-import { ThemeProvider } from "next-themes";
 
 // eslint-disable-next-line react/destructuring-assignment
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <ThemeProvider attribute="class">
+    <>
       <NextSeo
         title="Gabutech"
         description="ガブリエルの自己紹介・ブログ・プロダクト紹介のまとめサイト"
@@ -23,7 +22,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       />
 
       <Component {...pageProps} />
-    </ThemeProvider>
+    </>
   );
 };
 
