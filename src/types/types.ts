@@ -18,6 +18,7 @@ export type Blog = {
   content: string;
   createdAt: string;
   id: string;
+  isWork: boolean;
   publishedAt: string;
   revisedAt: string;
   title: string;
@@ -132,6 +133,7 @@ export type Work = {
   content: string;
   createdAt: string;
   id: string;
+  isWork: boolean;
   image: Image;
   publishedAt: string;
   revisedAt: string;
