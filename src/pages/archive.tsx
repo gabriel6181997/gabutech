@@ -5,30 +5,37 @@ import { Card } from "src/components/blogandwork/Card";
 import { Layout } from "src/components/layouts/Layout";
 import { Title } from "src/components/layouts/Title";
 import { client } from "src/libs/client";
-import type { Blogs } from "src/types/types";
+import type { Blog, Blogs, Work, Works } from "src/types/types";
 
 const Archive = () => {
-  const [blogInfo, setBlogInfo] = useState<Blogs>();
+  const [postInfo, setPostInfo] = useState<Blog[] | Work[]>([]);
   const router = useRouter();
   const publishedDate = router.query.publishedAt;
   const [isLoading, setIsLoading] = useState(true);
 
-  const getBlogInfo = useCallback(async () => {
+  const getPostInfo = useCallback(async () => {
     try {
-      const data: Blogs = await client.get({
+      const blogData: Blogs = await client.get({
         endpoint: "blogs",
         queries: { limit: 1000, filters: `publishedAt[contains]${publishedDate}` },
       });
-      setBlogInfo(data);
+
+      const workData: Works = await client.get({
+        endpoint: "works",
+        queries: { limit: 1000, filters: `publishedAt[contains]${publishedDate}` },
+      });
+
+      const data = [...blogData.contents, ...workData.contents];
+      setPostInfo(data);
     } catch (e) {
-      throw new Error(`ブログの情報を取得できませんでした！`);
+      throw new Error(`記事の情報を取得できませんでした！`);
     }
     setIsLoading(false);
   }, [publishedDate]);
 
   useEffect(() => {
-    getBlogInfo();
-  }, [getBlogInfo]);
+    getPostInfo();
+  }, [getPostInfo]);
 
   return (
     <Layout>
@@ -39,14 +46,22 @@ const Archive = () => {
         {isLoading ? (
           <ReactLoading type="spin" color="#BFDBFE" height={"10%"} width={"10%"} />
         ) : (
-          blogInfo?.contents.map((blog, index) => {
-            return (
+          postInfo.map((post, index) => {
+            return post.isWork ? (
               <Card
                 key={index}
-                href={`/blog/${blog.id}`}
-                image={blog.image.url}
-                title={blog.title}
-                date={blog.publishedAt}
+                href={`/work/${post.id}`}
+                image={post.image.url}
+                title={post.title}
+                date={post.publishedAt}
+              />
+            ) : (
+              <Card
+                key={index}
+                href={`/blog/${post.id}`}
+                image={post.image.url}
+                title={post.title}
+                date={post.publishedAt}
               />
             );
           })
