@@ -25,7 +25,7 @@ const ResultsPage: NextPage = () => {
       const data = [...blogData.contents, ...workData.contents];
       setResults(data);
     } catch (e) {
-      throw new Error(`ブログの情報を取得できませんでした！`);
+      throw new Error(`記事の情報を取得できませんでした！`);
     }
     setIsLoading(false);
   }, [searchKeyword]);
