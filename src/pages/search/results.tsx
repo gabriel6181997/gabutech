@@ -44,7 +44,15 @@ const ResultsPage: NextPage = () => {
           <ReactLoading type="spin" color="#BFDBFE" height={"10%"} width={"10%"} />
         ) : (results?.length ?? 0) > 0 ? (
           results?.map((result) => {
-            return (
+            return result.isWork ? (
+              <Card
+                key={result.title}
+                href={`/work/${result.id}`}
+                image={result.image.url}
+                title={result.title}
+                date={result.publishedAt}
+              />
+            ) : (
               <Card
                 key={result.title}
                 href={`/blog/${result.id}`}
