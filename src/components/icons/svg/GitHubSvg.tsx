@@ -5,8 +5,6 @@ type Props = {
   className: string;
 }
 
-//block w-6 h-6 text-gray-400 dark:text-gray-200 fill-current
-
 export const GitHubSvg:VFC<Props> = memo((props) => {
   return (
     <svg
