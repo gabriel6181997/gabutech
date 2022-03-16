@@ -88,7 +88,7 @@ const Home: NextPage<Props> = (props) => {
                   </a>
                 </Link>
               ) : (
-                <Link href="https://twitter.com/gabu_ITengineer">
+                <Link href="https://twitter.com/gabu_webdev">
                   <a>
                     <TwitterSvg className="block w-6 h-6 text-gray-400 fill-current" />
                   </a>
