@@ -57,7 +57,9 @@ const BlogId: NextPage<Props> = (props) => {
         <Title bigTitle variant="box" className="mb-6 text-3xl md:text-4xl">
           {props.blog.title}
         </Title>
-        <Image src={props.blog.image.url} alt="blog-picture" width={900} height={450} />
+        <div className="text-center">
+          <Image src={props.blog.image.url} alt="blog-picture" width={450} height={450} />
+        </div>
         <ul className="flex flex-wrap gap-3 mt-6">
           {props.blog.tags?.map((tag, index) => {
             return (
