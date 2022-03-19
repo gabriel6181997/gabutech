@@ -16,11 +16,10 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 type Props = {
-  about: AboutType,
-}
+  about: AboutType;
+};
 
 const About: NextPage<Props> = (props) => {
-
   return (
     <>
       <Layout>
@@ -28,7 +27,9 @@ const About: NextPage<Props> = (props) => {
           About
         </Title>
 
-        <Image src="/img/blogillustration.png" alt="blog-picture" width={900} height={450} />
+        <div className="text-center">
+          <Image src={props.about.thumbnail.url} alt="blog-picture" width={400} height={400} />
+        </div>
 
         <article
           className="my-6"
