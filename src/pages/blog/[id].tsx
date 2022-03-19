@@ -33,9 +33,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const tableOfContents = headings.map((data: any) => {
     return {
-      text: data.children[0].data,
-      id: data.attribs.id,
-      level: data.name,
+      text: data.children[0].data ? data.children[0].data : "",
+      id: data.attribs.id ? data.attribs.id : "",
+      level: data.name ? data.name : "",
     };
   });
 
