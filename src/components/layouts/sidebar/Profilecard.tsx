@@ -33,7 +33,8 @@ export const Profilecard = memo(() => {
           <Image className="rounded-full" src="/public/img/selflogo.png" alt="profile" width={150} height={150} />
         )}
         <p className="mt-3 font-bold">ガブリエル</p>
-        <p className="mt-1 text-sm">越境駆け出しエンジニア</p>
+        <p className="mt-1 text-sm">NAIST M1生・越境駆け出しエンジニア</p>
+
         <hr className="mx-auto mt-5 w-24 h-1 border-0 border-t-[2px] border-blue-200" />
 
         <div className="flex gap-4 justify-center mt-5">
