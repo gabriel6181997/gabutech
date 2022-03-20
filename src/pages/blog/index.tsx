@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data: Blogs = await client.get({ endpoint: `blogs?offset=0&limit=9` })
+  const data: Blogs = await client.get({ endpoint: `blogs?offset=0&limit=9` });
 
   return {
     props: {
@@ -34,7 +34,8 @@ const Blog: NextPage<Props> = (props) => {
               href={`/blog/${blog.id}`}
               image={blog.image.url}
               title={blog.title}
-              date={blog.publishedAt}
+              publishedAt={blog.publishedAt}
+              revisedAt={blog.revisedAt}
             />
           );
         })}

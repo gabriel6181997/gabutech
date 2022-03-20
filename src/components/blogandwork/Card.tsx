@@ -2,13 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import type { VFC } from "react";
 import { BiTime } from "react-icons/bi";
+import { MdOutlineAutorenew } from "react-icons/md";
 import { fixDateFormat } from "src/libs/fixDateFormat";
 
 type Props = {
   href: string;
   image: string;
   title: string;
-  date: string;
+  publishedAt: string;
+  revisedAt: string;
 };
 
 export const Card: VFC<Props> = (props) => {
@@ -21,7 +23,11 @@ export const Card: VFC<Props> = (props) => {
             <h3 className="font-bold">{props.title}</h3>
             <div className="flex items-center pt-1">
               <BiTime className="pr-1 text-gray-600" />
-              <p className="text-sm">{fixDateFormat(props.date)}</p>
+              <p className="text-sm">{fixDateFormat(props.publishedAt)}</p>
+            </div>
+            <div className="flex items-center pt-1">
+              <MdOutlineAutorenew className="pr-1 text-gray-600" />
+              <p className="text-sm">{fixDateFormat(props.revisedAt)}</p>
             </div>
           </div>
         </a>
