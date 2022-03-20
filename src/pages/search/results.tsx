@@ -50,7 +50,8 @@ const ResultsPage: NextPage = () => {
                 href={`/work/${result.id}`}
                 image={result.image.url}
                 title={result.title}
-                date={result.publishedAt}
+                publishedAt={result.publishedAt}
+                revisedAt={result.revisedAt}
               />
             ) : (
               <Card
@@ -58,7 +59,8 @@ const ResultsPage: NextPage = () => {
                 href={`/blog/${result.id}`}
                 image={result.image.url}
                 title={result.title}
-                date={result.publishedAt}
+                publishedAt={result.publishedAt}
+                revisedAt={result.revisedAt}
               />
             );
           })

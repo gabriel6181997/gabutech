@@ -55,7 +55,8 @@ export const tagName: NextPage<Props> = (props) => {
               <Card
                 key={index}
                 title={datum.title}
-                date={datum.publishedAt}
+                publishedAt={datum.publishedAt}
+                revisedAt={datum.revisedAt}
                 href={`/work/${datum.id}`}
                 image={datum.image.url}
               />
@@ -63,7 +64,8 @@ export const tagName: NextPage<Props> = (props) => {
               <Card
                 key={index}
                 title={datum.title}
-                date={datum.publishedAt}
+                publishedAt={datum.publishedAt}
+                revisedAt={datum.revisedAt}
                 href={`/blog/${datum.id}`}
                 image={datum.image.url}
               />

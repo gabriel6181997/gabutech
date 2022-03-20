@@ -122,7 +122,8 @@ const Home: NextPage<Props> = (props) => {
                     href={`/blog/${blog.id}`}
                     image={blog.image.url}
                     title={blog.title}
-                    date={blog.publishedAt}
+                    publishedAt={blog.publishedAt}
+                    revisedAt={blog.revisedAt}
                   />
                 );
               })}
@@ -148,7 +149,8 @@ const Home: NextPage<Props> = (props) => {
                     href={`/work/${work.id}`}
                     image={work.image.url}
                     title={work.title}
-                    date={work.publishedAt}
+                    publishedAt={work.publishedAt}
+                    revisedAt={work.revisedAt}
                   />
                 );
               })}

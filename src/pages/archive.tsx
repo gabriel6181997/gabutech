@@ -53,7 +53,8 @@ const Archive = () => {
                 href={`/work/${post.id}`}
                 image={post.image.url}
                 title={post.title}
-                date={post.publishedAt}
+                publishedAt={post.publishedAt}
+                revisedAt={post.revisedAt}
               />
             ) : (
               <Card
@@ -61,7 +62,8 @@ const Archive = () => {
                 href={`/blog/${post.id}`}
                 image={post.image.url}
                 title={post.title}
-                date={post.publishedAt}
+                publishedAt={post.publishedAt}
+                revisedAt={post.revisedAt}
               />
             );
           })
