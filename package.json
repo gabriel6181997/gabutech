@@ -37,7 +37,6 @@
     "react-loading": "^2.0.3"
   },
   "devDependencies": {
-    "@types/cheerio": "^0.22.31",
     "@types/highlightjs": "^9.12.2",
     "@types/react": "17.0.13",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
