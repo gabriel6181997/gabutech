@@ -180,6 +180,18 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.0.6.tgz#023d72a5c4531b4ce204528971700a78a85a0c50"
   integrity sha512-Myxw//kzromB9yWgS8qYGuGVf91oBUUJpNvy5eM50sqvmKLbKjwLxohJnkWGTeeI9v9IBMtPLxz5Gc60FIfvCA==
 
+"@types/cheerio@^0.22.31":
+  version "0.22.31"
+  resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.22.31.tgz#b8538100653d6bb1b08a1e46dec75b4f2a5d5eb6"
+  integrity sha512-Kt7Cdjjdi2XWSfrZ53v4Of0wG3ZcmaegFXjMmz9tfNrZSkzzo36G0AL1YqSdcIA78Etjt6E609pt5h1xnQkPUw==
+  dependencies:
+    "@types/node" "*"
+
+"@types/highlightjs@^9.12.2":
+  version "9.12.2"
+  resolved "https://registry.yarnpkg.com/@types/highlightjs/-/highlightjs-9.12.2.tgz#6b6d460968a975f4ce3ab3907c03cde46a72a02f"
+  integrity sha512-oW2pEKwshxwBW1nVUizWQg/tnhboRtKrUKnF2hd6l4BZ0shr5ZjQ4ra/82+NEH6uWeM8JjrMGCux5enQXOQbTA==
+
 "@types/json-schema@^7.0.7":
   version "7.0.7"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.7.tgz#98a993516c859eb0d5c4c8f098317a9ea68db9ad"
