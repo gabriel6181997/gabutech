@@ -55,7 +55,8 @@ const WorkPageId: NextPage<Props> = (props) => {
               href={`/work/${work.id}`}
               image={work.image.url}
               title={work.title}
-              date={work.publishedAt}
+              publishedAt={work.publishedAt}
+              revisedAt={work.revisedAt}
             />
           );
         })}
