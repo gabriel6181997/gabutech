@@ -1,6 +1,8 @@
 import cheerio from "cheerio";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Image from "next/image";
+import { BiTime } from "react-icons/bi";
+import { MdOutlineAutorenew } from "react-icons/md";
 import { TableOfContents } from "src/components/blogandwork/TableOfContents";
 import { Layout } from "src/components/layouts/Layout";
 import { Title } from "src/components/layouts/Title";
@@ -70,7 +72,17 @@ const WorkId: NextPage<Props> = (props) => {
             );
           })}
         </ul>
-        <p className="mt-3 font-bold">{fixDateFormat(props.work.publishedAt)}</p>
+        <div className="flex items-center mt-3">
+          <div className="flex items-center">
+            <BiTime className="pr-1 text-gray-600" size="20px" />
+            <p className="font-bold">{fixDateFormat(props.work.publishedAt)}</p>
+          </div>
+          <div className="flex items-center ml-3">
+            <MdOutlineAutorenew className="pr-1 text-gray-600" size="20px" />
+            <p className="font-bold">{fixDateFormat(props.work.revisedAt)}</p>
+          </div>
+        </div>
+
         {props.tableOfContents.length > 0 ? (
           <div className="my-4">
             <h3 className="pb-2 font-bold text-center">目次</h3>
