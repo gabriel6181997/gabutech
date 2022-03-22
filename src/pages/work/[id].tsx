@@ -59,7 +59,9 @@ const WorkId: NextPage<Props> = (props) => {
         <Title bigTitle variant="box" className="mb-6 text-3xl md:text-4xl">
           {props.work.title}
         </Title>
-        <Image src={props.work.image.url} alt="blog-picture" width={900} height={450} />
+        <div className="text-center">
+          <Image src={props.work.image.url} alt="blog-picture" width={350} height={350} />
+        </div>
         <ul className="flex flex-wrap gap-3 mt-6">
           {props.work.tags?.map((tag, index) => {
             return (
