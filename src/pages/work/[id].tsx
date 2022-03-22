@@ -6,6 +6,7 @@ import { MdOutlineAutorenew } from "react-icons/md";
 import { TableOfContents } from "src/components/blogandwork/TableOfContents";
 import { Layout } from "src/components/layouts/Layout";
 import { Title } from "src/components/layouts/Title";
+import { Tag } from "src/components/shared/Tag";
 import { addClassNames } from "src/libs/addClassNames";
 import { client } from "src/libs/client";
 import { fixDateFormat } from "src/libs/fixDateFormat";
@@ -65,11 +66,8 @@ const WorkId: NextPage<Props> = (props) => {
         <ul className="flex flex-wrap gap-3 mt-6">
           {props.work.tags?.map((tag, index) => {
             return (
-              <li
-                key={index}
-                className="p-3 text-sm md:text-base font-bold text-blue-900 rounded-xl border-2 border-blue-900"
-              >
-                {tag.tagName}
+              <li key={index}>
+                <Tag tagName={tag.tagName} />
               </li>
             );
           })}
